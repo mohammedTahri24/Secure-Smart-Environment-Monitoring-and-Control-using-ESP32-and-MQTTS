@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "author": "Andrea Liced Galarza Salguero",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 50, "left": -50, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -120, "left": -150, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 30,
+      "left": -200,
+      "attrs": { "color": "cyan" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 120,
+      "left": -220,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -30,
+      "left": 100,
+      "attrs": { "volume": "0.1" }
+    },
+    { "type": "wokwi-servo", "id": "servo1", "top": 150, "left": 150, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 300,
+      "left": 30,
+      "rotate": 90,
+      "attrs": { "color": "red", "xray": "1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn2",
+      "top": 320,
+      "left": 120,
+      "rotate": 90,
+      "attrs": { "color": "green", "xray": "1" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 350,
+      "left": 0,
+      "rotate": 270,
+      "attrs": { "value": "10000" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "r1:1", "led1:A", "orange", [ "h0" ] ],
+    [ "led1:C", "esp:GND.1", "gray", [ "v0" ] ],
+    [ "bz1:1", "esp:GND.2", "gray", [ "v0" ] ],
+    [ "servo1:GND", "esp:GND.2", "gray", [ "v-76.8", "h-124.8" ] ],
+    [ "dht1:GND", "esp:GND.1", "gray", [ "v230.4", "h47.85" ] ],
+    [ "dht1:VCC", "esp:5V", "red", [ "v0" ] ],
+    [ "servo1:V+", "esp:5V", "red", [ "h-67.2", "v153.7", "h-153.75" ] ],
+    [ "r1:2", "esp:25", "orange", [ "v56.4", "h134.25" ] ],
+    [ "bz1:2", "esp:19", "blue", [ "v0" ] ],
+    [ "dht1:SDA", "esp:14", "yellow", [ "v0" ] ],
+    [ "servo1:PWM", "esp:18", "yellow", [ "h0" ] ],
+    [ "btn2:1.r", "esp:GND.1", "gray", [ "v115.4", "h-336", "v-220.8" ] ],
+    [ "btn2:2.r", "esp:2", "purple", [ "v67.4", "h-163.4" ] ],
+    [ "btn1:2.l", "esp:4", "yellow", [ "v0" ] ],
+    [ "esp:5V", "btn1:1.r", "red", [ "v86.4", "h201.75" ] ],
+    [ "esp:GND.1", "r2:1", "gray", [ "v115.2", "h124.95", "v0.55" ] ],
+    [ "r2:2", "esp:4", "yellow", [ "v-66", "h-48" ] ]
+  ],
+  "dependencies": {}
+}
