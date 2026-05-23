@@ -6,22 +6,34 @@
 ![PlatformIO](https://img.shields.io/badge/PlatformIO-Embedded-orange)
 ![Wokwi](https://img.shields.io/badge/Wokwi-Simulation-purple)
 
-A secure IoT-based environment monitoring and control system built with **ESP32**, **MQTT/MQTTS**, **Wokwi simulation**, and **Node-RED Dashboard**.
-
-The system enables **real-time monitoring**, **remote control**, **alert management**, and **secure communication** using the Publish/Subscribe architecture.
+A secure IoT-based environment monitoring and control system developed using **ESP32**, **MQTT/MQTTS**, **Wokwi simulation**, and **Node-RED Dashboard** for real-time monitoring, remote control, and secure communication.
 
 ---
 
-# 📌 Project Overview
+# 📌 Project Context
 
-This project simulates an intelligent environment monitoring system capable of:
+The rapid development of IoT technologies enables the creation of intelligent systems capable of monitoring and controlling environments remotely.
 
-✅ Monitoring temperature and humidity in real time  
-✅ Detecting abnormal environmental conditions  
-✅ Triggering visual and sound alerts  
-✅ Controlling devices remotely  
-✅ Displaying telemetry in a dashboard  
-✅ Securing communication using MQTT over TLS (MQTTS)
+This project proposes a smart environment monitoring and control system capable of:
+
+- Monitoring temperature and humidity in real time
+- Detecting abnormal environmental conditions
+- Triggering alarms automatically
+- Controlling devices remotely
+- Displaying data through an interactive dashboard
+- Securing communication using MQTT over TLS (MQTTS)
+
+---
+
+# 🎯 Project Objectives
+
+The main objectives of this project are:
+
+✔ Monitor environmental conditions in real time  
+✔ Enable remote device control  
+✔ Implement MQTT Publish/Subscribe communication  
+✔ Visualize data using Node-RED Dashboard  
+✔ Introduce secure communication through TLS  
 
 ---
 
@@ -45,22 +57,25 @@ Dashboard
 
 ---
 
-# ⚙️ Components
+# 🔧 System Components
 
 | Component | Role |
 |---|---|
 | ESP32 | Main controller |
-| DHT22 | Temperature & Humidity Sensor |
+| DHT22 | Temperature & humidity measurement |
 | Servo Motor | Fan simulation |
 | LED | Visual alert |
 | Buzzer | Sound alarm |
 | Push Buttons | Local controls |
+| MQTT Broker (EMQX) | Message exchange |
+| Node-RED | Data processing |
+| Dashboard | User interface |
 
 ---
 
 # 📡 MQTT Communication
 
-The system follows the **Publish / Subscribe** model.
+The project follows the **Publish / Subscribe** architecture.
 
 ## MQTT Broker
 
@@ -72,22 +87,23 @@ broker.emqx.io
 
 | Topic | Direction | Description |
 |---|---|---|
-| `warehouse/esp32-01/telemetry` | ESP32 → Node-RED | Sensor data |
-| `warehouse/esp32-01/commands` | Node-RED → ESP32 | Remote commands |
-| `warehouse/esp32-01/events` | ESP32 → Node-RED | Alert events |
+| `warehouse/esp32-01/telemetry` | ESP32 → Dashboard | Sensor values |
+| `warehouse/esp32-01/commands` | Dashboard → ESP32 | Remote commands |
+| `warehouse/esp32-01/events` | ESP32 → Dashboard | Alerts |
 
 ---
 
 # 🎛 Dashboard Features
 
-The Node-RED dashboard provides:
+The Node-RED Dashboard provides:
 
 - 🌡 Temperature Monitoring
 - 💧 Humidity Monitoring
-- 🚨 Alert Detection
 - 🌀 Fan Control
+- 🚨 Alert Detection
 - 🔇 Alarm Mute
 - 🔄 Alert Reset
+- 📊 Real-Time Visualization
 
 Dashboard URL:
 
@@ -97,9 +113,9 @@ http://localhost:1880/ui
 
 ---
 
-# 🔐 Security Improvements
+# 🔐 Security Layer
 
-The communication layer can operate in:
+The communication can operate in:
 
 ## Standard MQTT
 
@@ -113,96 +129,72 @@ Port 1883
 Port 8883
 ```
 
-Security enhancements:
+Implemented improvements:
 
-✔ TLS encryption  
-✔ Secure communication  
-✔ Reduced interception risk  
+- TLS encrypted communication
+- Secure transport layer
+- Improved confidentiality
 
-Implementation:
+Example:
 
 ```cpp
 WiFiClientSecure espClient;
-
 espClient.setInsecure();
 ```
 
-> For production environments, certificate validation should replace `setInsecure()`.
+> In production environments, certificate validation should replace `setInsecure()`.
 
 ---
 
-# 🧠 Project Workflow
+# ▶️ Execution Instructions
 
-## Monitoring
-
-```text
-ESP32
- ↓
-Read DHT22
- ↓
-Publish Telemetry
- ↓
-Broker
- ↓
-Node-RED Dashboard
-```
-
-## Remote Control
-
-```text
-Dashboard
- ↓
-Send Command
- ↓
-Broker
- ↓
-ESP32
- ↓
-Execute Action
-```
-
----
-
-# 🛠 Technologies Used
-
-- ESP32
-- PlatformIO
-- C++
-- MQTT / MQTTS
-- EMQX Broker
-- Wokwi
-- Node-RED
-- Node-RED Dashboard
-
----
-
-# 🚀 Installation
-
-## Clone Repository
+## 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
+git clone https://github.com/mohammedTahri24/Secure-Smart-Environment-Monitoring-and-Control-using-ESP32-and-MQTTS.git
 ```
 
-## Open Project
+---
 
-```bash
-VS Code → PlatformIO
+## 2. Open the project
+
+Open the project using:
+
+```text
+Visual Studio Code + PlatformIO
 ```
 
-## Build
+---
+
+## 3. Install dependencies
+
+Libraries are automatically installed from:
+
+```text
+platformio.ini
+```
+
+---
+
+## 4. Build firmware
 
 ```bash
 Ctrl + Alt + B
 ```
 
-## Start Simulation
+---
+
+## 5. Start simulation
+
+Run:
 
 ```text
-Start Wokwi Simulation
+Wokwi → Start Simulation
 ```
 
-## Launch Node-RED
+---
+
+## 6. Launch Node-RED
 
 ```bash
 node-red
@@ -216,39 +208,66 @@ http://localhost:1880/ui
 
 ---
 
+# 📂 Project Structure
+
+```text
+SecureSmartHome/
+│
+├── src/
+│   └── main.cpp
+│
+├── diagram.json
+├── platformio.ini
+├── wokwi.toml
+├── README.md
+├── screenshots/
+│
+└── docs/
+```
+
+---
+
 # 📷 Screenshots
 
-## Wokwi Simulation
+## 🧪 Wokwi Simulation
 
-(Add screenshot)
-
----
-
-## Node-RED Flow
-
-(Add screenshot)
+![Wokwi](screenshots/wokwi.png)
 
 ---
 
-## Dashboard
+## 🔄 Node-RED Flow
 
-(Add screenshot)
+![Flow](screenshots/flow.png)
 
 ---
 
-# 📈 Future Improvements
+## 🎛 Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+---
+
+# ▶️ Live Simulation
+
+Wokwi Simulation:
+
+https://wokwi.com/projects/464817024153619457
+
+---
+
+# 🚀 Future Improvements
 
 - Certificate validation
-- Private MQTT Broker
-- Historical Data Storage
-- Cloud Integration
-- User Authentication
+- Cloud deployment
+- Historical data storage
+- User authentication
+- Private MQTT broker
 
 ---
 
 # 👨‍💻 Authors
 
-Developed as an IoT academic project.
+Developed as an academic IoT project.
 
 ---
 
